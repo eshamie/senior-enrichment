@@ -14,47 +14,79 @@ api.get('/hello', (req, res) => res.send({hello: 'world'}));
 api.get('/campuses', (req, res, next) => {
 	Campus.findAll()
 		.then(campuses => res.json(campuses))
-		.catch(next)
+		.catch(next);
 });
 
-api.get('/campuses/:id', (req, res) => res.send(
+api.get('/campuses/:id', (req, res, next) => {
+	const campusId = req.params.id;
 
-));
+	Student.findAll({ where: { campusId }} )
+		.then(students => res.json(students))
+		.catch(next);
+});
 
-api.post('/campuses', (req, res) => res.send(
+api.post('/campuses', (req, res, next) => {
+	Campus.create(req.body)
+		.then(campus => res.json(campus))
+		.catch(next);
+});
 
-));
+api.put('/campuses/:id', (req, res, next) => {
+	const id = req.params.id;
 
-api.put('/campuses/:id', (req, res) => res.send(
+	Campus.update( req.body, {where: { id }})
+		.then(campus => res.json(campus))
+		.catch(next);
+});
 
-));
+api.delete('/campuses/:id', (req, res, next) => {
+	const campusId = req.params.id;
 
-api.delete('/campuses/:id', (req, res) => res.send(
-
-));
+	Campus.destroy({where: {campusId}})
+		.then(() => res.status(204).end())
+    .catch(next);
+});
 
 
 //student requests
-api.get('/students', (req, res) => res.send(
-		Student.findAll()
+api.get('/students', (req, res, next) => {
+	Student.findAll()
 		.then(students => res.json(students))
-		.catch(next)
-));
+		.catch(next);
+});
 
-api.get('/student/:id', (req, res) => res.send(
+api.get('/students/:id', (req, res, next) => {
+	const id = req.params.id;
 
-));
+	Student.findOne( {where: { id }} )
+		.then(student => res.json(student))
+		.catch(next);
+});
 
-api.post('/students', (req, res) => res.send(
+api.post('/students', (req, res, next) => {
+	Student.create(req.body)
+		.then(student => res.json(student))
+		.catch(next);
+});
 
-));
+api.put('/students/:id', (req, res, next) => {
+	const id = req.params.id;
 
-api.put('/students/:id', (req, res) => res.send(
+	Student.update(req.body, {where: { id }})
+		.then(student => res.json(student))
+		.catch(next);
+});
 
-));
+api.delete('/students/:id', (req, res, next) => {
+	const id = req.params.id;
 
-api.delete('/students/:id', (req, res) => res.send(
-
-));
+	Student.destroy({where: {id}})
+		.then(() => res.status(204).end())
+    .catch(next);
+});
 
 module.exports = api
+
+
+// .update({ attributes_to_update}, {where: {options}})
+// .destroy({where:{} })

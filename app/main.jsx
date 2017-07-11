@@ -5,10 +5,10 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import Root from './components/Root'
-
+console.log(store)
 render (
   <Provider store={store}>
-    <Root/>
+    <Home />
   </Provider>,
   document.getElementById('main')
 )
