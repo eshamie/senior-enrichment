@@ -24,7 +24,7 @@ export function fetchStudents() {
     return axios.get('/api/students')
       .then(res => res.data)
       .then(students => {
-        const action = getstudents(students);
+        const action = getStudents(students);
         dispatch(action);
       });
   };

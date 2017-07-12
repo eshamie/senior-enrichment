@@ -16,7 +16,6 @@ function mapDispatchToProps(dispatch, ownProps){
     },
     handleSubmit: function(event){
       event.preventDefault();
-      console.log('event', event.target);
       dispatch(postStudent({name: event.target.studentName.value}, ownProps.history));
       dispatch(writeStudent(''));
     }

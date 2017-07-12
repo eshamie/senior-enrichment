@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter  } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 // import store from '../store';
 import { connect } from 'react-redux';
 
 const mapStateToProps = function (state) {
   return {
     campuses: state.campuses,
+
   };
 };
 
@@ -17,7 +18,7 @@ function CampusList(props) {
         props.campuses.map(campus => {
           return (
             <li key={campus.id}>
-              <NavLink to={`/campuses/${campus.id}`} activeClassName="active">
+              <NavLink to={`/campuses/${campus.id}`} >
                 <span>{campus.name}</span>
               </NavLink>
             </li>

@@ -15,8 +15,8 @@ function mapDispatchToProps(dispatch, ownProps){
       dispatch(writeCampus(event.target.value));
     },
     handleSubmit: function(event){
+      console.log(event.target)
       event.preventDefault();
-      console.log('event', event.target);
       dispatch(postCampus({name: event.target.campusName.value}, ownProps.history));
       dispatch(writeCampus(''));
     }
@@ -38,7 +38,7 @@ function NewCampusEntry (props) {
         />
       </div>
       <div className="form-group">
-        <button type="submit" className="btn btn-default">Create Channel</button>
+        <button type="submit" className="btn btn-default">Create Campus</button>
       </div>
     </form>
   );
