@@ -3,6 +3,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const {resolve} = require('path')
+// const path = require('path') //tried to use this to stop refreshing from causing error
 
 const pkg = require('../package.json')
 
@@ -22,6 +23,14 @@ module.exports = app
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html'))) // Send index.html for any other requests.
 
   // notice the use of `_` as the first parameter above. This is a pattern for parameters that must exist, but you don't use or reference (or need) in the function body that follows.
+
+// var validFrontendRoutes = ['/', '/campuses', '/students', '/students/:id', '/campus/:id', '/new-user', '/new-student'];
+// var indexPath = path.join(__dirname, '..', '..', 'browser', 'index.html');
+// validFrontendRoutes.forEach(function (stateRoute) {
+//   app.get(stateRoute, function (req, res) {
+//     res.sendFile(indexPath);
+//   });
+// });
 
 if (module === require.main) {
   // Start listening only if we're the main module.

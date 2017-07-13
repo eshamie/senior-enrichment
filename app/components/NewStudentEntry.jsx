@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { writeStudent, postStudent } from '../store';
+import { writeStudent, writeEmail, writeStudentCampus, postStudent } from '../store';
 
 function mapStateToProps(state, ownProps){
   return {
-    newStudentEntry: state.newStudentEntry
-
+    campuses: state.campuses,
+    newStudent: state.newStudent
   };
 }
 
+
 function mapDispatchToProps(dispatch, ownProps){
   return {
-    handleChange: function(event){
-      dispatch(Student(event.target.value));
+    // handleNameChange: function(event){
+    //   dispatch(writeStudent(event.target.value));
+    // },
+    // handleEmailChange: function(event){
+    //   dispatch(writeEmail(event.target.value));
+    // },
+    handleCampusChange: function(event){
+      dispatch(writeStudentCampus(event.target.value));
     },
     handleSubmit: function(event){
+      console.log('ownProps',ownProps)
       event.preventDefault();
-      dispatch(postStudent({name: event.target.studentName.value}, ownProps.history));
-      dispatch(writeStudent(''));
+      dispatch(postStudent({name: event.target.studentName.value, email: event.target.email.value, campusId: event.target.campus.value}, ownProps.history));
     }
   };
 }
 
 function NewStudentEntry (props) {
+
   return (
     <form onSubmit= {props.handleSubmit}>
       <div className="form-group">
@@ -31,9 +39,19 @@ function NewStudentEntry (props) {
         className="form-control"
         type="text"
         name="studentName"
+        placeholder="Enter student name"
+        />
+        <input
+        className="form-control"
+        type="text"
+        name="email"
+        placeholder="Enter email"
+        />
+        <input
+        className="form-control"
+        type="text"
+        name="campus"
         placeholder="Enter campus name"
-        value={props.newStudentEntry}
-        onChange={props.handleChange}
         />
       </div>
       <div className="form-group">

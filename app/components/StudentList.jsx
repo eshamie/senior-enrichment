@@ -24,9 +24,6 @@ function StudentList(props) {
           );
         })
       }
-      <li>
-          <NavLink to="/new-student">Create a student...</NavLink>
-      </li>
     </ul>
   );
 }

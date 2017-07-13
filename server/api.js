@@ -85,7 +85,8 @@ api.delete('/students/:id', (req, res, next) => {
     .catch(next);
 });
 
-module.exports = api
+
+module.exports = api;
 
 
 // .update({ attributes_to_update}, {where: {options}})

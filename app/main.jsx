@@ -2,12 +2,12 @@
 import React from 'react'
 import {render} from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 
 import store from './store';
 import Home from './components/Home';
 
-render (
+render(
   <Provider store={store}>
     <Router>
       <Home />

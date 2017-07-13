@@ -22,21 +22,21 @@ export default class Home extends Component {
     return (
       <div>
         <NavLink
-        to={`/campuses`}
+        to={'/campuses'}
         activeClassName="active"
-        activeStyle={{ fontWeight: 'bold', color: 'green'}}>
+        activeStyle={{ fontWeight: 'bold', color: 'green'}} >
           <span>Campuses</span>
         </NavLink>
         <NavLink
-        to={`/students`}
+        to={'/students'}
         activeClassName="active"
-        activeStyle={{ fontWeight: 'bold', color: 'green'}}>
+        activeStyle={{ fontWeight: 'bold', color: 'green'}} >
           <span>Students</span>
         </NavLink>
         <main>
           <Switch>
             <Route exact path="/campuses" component={CampusList} />
-            <Route path="/campuses/:campusId" component={SingleCampus} />
+            <Route exact path="/campuses/:campusId" component={SingleCampus} />
             <Route path="/new-campus" component={NewCampusEntry} />
             <Route path="/new-student" component={NewStudentEntry} />
             <Route exact path="/students" component={StudentList} />

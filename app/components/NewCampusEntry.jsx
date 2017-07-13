@@ -4,7 +4,7 @@ import { writeCampus, postCampus } from '../store';
 
 function mapStateToProps(state, ownProps){
   return {
-    newCampusEntry: state.newCampusEntry
+    newCampusEntry: state.newCampus
 
   };
 }
@@ -33,7 +33,7 @@ function NewCampusEntry (props) {
         type="text"
         name="campusName"
         placeholder="Enter campus name"
-        value={props.newCampusEntry}
+        value={props.newCampus}
         onChange={props.handleChange}
         />
       </div>

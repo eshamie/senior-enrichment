@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = function (state) {
   return {
     students: state.students,
-
+    campuses: state.campuses,
   };
 };
 
@@ -14,10 +14,11 @@ const mapStateToProps = function (state) {
 function SingleCampus(props) {
   const campusId = Number(props.match.url.slice(-1));
   const students = props.students;
+  console.log('my campuses', props.campuses)
+  console.log('my students', props)
   const filteredStudents = students.filter(student => {
     return student.campusId === campusId;
   });
-
   return (
     <ul>
       {

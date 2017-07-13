@@ -14,11 +14,20 @@ const mapStateToProps = function (state) {
 function CampusList(props) {
   return (
     <ul>
+      <li>
+        <NavLink
+        to={'/students'}
+        activeClassName="active"
+        activeStyle={{ fontWeight: 'bold', color: 'green'}} >
+          <span>All Students</span>
+        </NavLink>
+      </li>
       {
         props.campuses.map(campus => {
           return (
             <li key={campus.id}>
-              <NavLink to={`/campuses/${campus.id}`} >
+              <NavLink to={`/campuses/${campus.id}`} activeClassName="active"
+               activeStyle={{ fontWeight: 'bold', color: 'green'}}>
                 <span>{campus.name}</span>
               </NavLink>
             </li>
@@ -26,7 +35,10 @@ function CampusList(props) {
         })
       }
       <li>
-        <NavLink to="/new-campus">Create a campus...</NavLink>
+        <NavLink
+        to="/new-campus"
+        activeClassName="active"
+        activeStyle={{ fontWeight: 'bold', color: 'green'}}>Create a campus...</NavLink>
       </li>
     </ul>
   );
