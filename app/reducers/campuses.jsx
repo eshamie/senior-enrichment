@@ -9,6 +9,7 @@ const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 
 /*---------- ACTION CREATORS ----------*/
 
+//adding a newly created campus to state
 export function getCampus(campus) {
   const action = {
     type: GET_CAMPUS,

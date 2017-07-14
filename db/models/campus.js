@@ -9,7 +9,7 @@ module.exports = db.define('campus', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true //this doesn't work, tried having 2 uniqu fields. ansewrs are very vague online
+    unique: true //this doesn't work, tried having 2 unique fields.
   },
   image: {
     type: Sequelize.STRING,
@@ -18,4 +18,5 @@ module.exports = db.define('campus', {
     //   isUrl: true,
     // }
   }
+}, {indexex: [{unique: true, fields: []}]
 });

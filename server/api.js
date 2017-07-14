@@ -63,7 +63,6 @@ api.get('/students/:id', (req, res, next) => {
 });
 
 api.post('/students', (req, res, next) => {
-	console.log(req.body)
 	Student.create(req.body)
 		.then(student => res.json(student))
 		.catch(next);

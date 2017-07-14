@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-import CampusList from './CampusList';
 import StudentList from './StudentList';
 import NewCampusEntry from './NewCampusEntry';
 import NewStudentEntry from './NewStudentEntry';
