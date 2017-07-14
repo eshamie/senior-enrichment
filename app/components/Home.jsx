@@ -28,7 +28,6 @@ export default class Home extends Component {
         <SideBar />
         <main>
           <Switch>
-            <Route exact path="/campuses" component={CampusList} />
             <Route exact path="/campuses/:campusId" component={SingleCampus} />
             <Route path="/new-campus" component={NewCampusEntry} />
             <Route path="/campuses/:campusId/update" component={UpdateCampusEntry} />
@@ -36,6 +35,8 @@ export default class Home extends Component {
             <Route exact path="/students" component={StudentList} />
             <Route exact path="/students/:studentId" component={SingleStudent} />
             <Route path="/students/:studentId/update" component={UpdateStudentEntry} />
+            <Route
+            path='/new-student' component={NewStudentEntry} />
             <Redirect to="/students" />
           </Switch>
         </main>

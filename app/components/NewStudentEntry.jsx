@@ -12,16 +12,21 @@ function mapStateToProps(state, ownProps){
 
 function mapDispatchToProps(dispatch, ownProps){
   return {
-    handleSubmit: function(event){
+    handleSubmit: function(props, event){
       event.preventDefault();
-      dispatch(postStudent({name: event.target.studentName.value, email: event.target.email.value, campusId: Number(ownProps.match.params.campusId)}, ownProps.history));
+      const campusId = props.campuses.find(campus => campus.name === event.target.campus.value).id;
+      dispatch(postStudent({name: event.target.studentName.value, email: event.target.email.value, campusId: campusId}, ownProps.history));
     }
   };
 }
 
 function NewStudentEntry (props) {
+  const campusId = Number(props.match.params.campusId)
+  const campuses = props.campuses;
+  const currentCampus = campusId ? campuses.find(campus => campus.id === campusId) : {};
+
   return (
-    <form onSubmit= {props.handleSubmit}>
+    <form onSubmit= {event => props.handleSubmit(props, event)}>
       <div className="form-group">
         <label htmlFor="name">Add a Student</label>
         <input
@@ -35,6 +40,13 @@ function NewStudentEntry (props) {
         type="text"
         name="email"
         placeholder="Enter email"
+        />
+        <input
+        defaultValue={currentCampus.name}
+        className="form-control"
+        name="campus"
+        type="text"
+        placeholder="Enter campus"
         />
       </div>
       <div className="form-group">

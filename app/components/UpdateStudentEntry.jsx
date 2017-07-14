@@ -25,7 +25,6 @@ function UpdateStudentEntry (props) {
   const studentId = Number(props.match.params.studentId);
   const students = props.students;
   const currentStudent = students.length ? students.find(student => student.id === studentId) : {};
-  console.log('currentstudent', currentStudent)
   const campuses = props.campuses;
   const currentCampus = campuses.length ? campuses.find(campus => campus.id === currentStudent.campusId) : {};
   return (
