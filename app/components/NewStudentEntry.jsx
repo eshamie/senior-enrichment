@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { postStudent } from '../store';
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state){
   return {
     campuses: state.campuses,
     newStudent: state.newStudent
@@ -12,6 +12,8 @@ function mapStateToProps(state, ownProps){
 
 function mapDispatchToProps(dispatch, ownProps){
   return {
+    //had to pass in props so I can find the campus id from the list of camuses on state
+    //form onSubmit shows how props are passed
     handleSubmit: function(props, event){
       event.preventDefault();
       const campusId = props.campuses.find(campus => campus.name === event.target.campus.value).id;
@@ -23,7 +25,7 @@ function mapDispatchToProps(dispatch, ownProps){
 function NewStudentEntry (props) {
   const campusId = Number(props.match.params.campusId)
   const campuses = props.campuses;
-  const currentCampus = campusId ? campuses.find(campus => campus.id === campusId) : {};
+  const currentCampus = campuses.length ? campuses.find(campus => campus.id === campusId) : {};
 
   return (
     <form onSubmit= {event => props.handleSubmit(props, event)}>
@@ -42,7 +44,7 @@ function NewStudentEntry (props) {
         placeholder="Enter email"
         />
         <input
-        defaultValue={currentCampus.name}
+        defaultValue={currentCampus && currentCampus.name}
         className="form-control"
         name="campus"
         type="text"
@@ -56,6 +58,5 @@ function NewStudentEntry (props) {
   );
 }
 
-/** Write your `connect` component below! **/
 const newStudentContainer = connect(mapStateToProps, mapDispatchToProps)(NewStudentEntry);
 export default newStudentContainer;

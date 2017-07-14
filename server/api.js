@@ -1,6 +1,6 @@
-'use strict'
-const api = require('express').Router()
-const db = require('../db')
+'use strict';
+const api = require('express').Router();
+const db = require('../db');
 const {Student, Campus} = require('../db/models');
 
 
@@ -20,7 +20,6 @@ api.get('/campuses', (req, res, next) => {
 
 api.get('/campuses/:id', (req, res, next) => {
 	const campusId = req.params.id;
-
 	Student.findAll({ where: { campusId }} )
 		.then(students => res.json(students))
 		.catch(next);
@@ -83,9 +82,4 @@ api.delete('/students/:id', (req, res, next) => {
     .catch(next);
 });
 
-
 module.exports = api;
-
-
-// .update({ attributes_to_update}, {where: {options}})
-// .destroy({where:{} })

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { updateStudent } from '../store';
 
-function mapStateToProps(state, ownProps){
+function mapStateToProps(state){
   return {
     campuses: state.campuses,
     students: state.students

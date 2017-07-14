@@ -20,4 +20,4 @@ if (!reasonableName.test(pkg.name)) {
   console.error(chalk.red(nameError))
 }
 
-module.exports = pkg
+module.exports = pkg;

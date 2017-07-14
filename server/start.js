@@ -1,13 +1,13 @@
-'use strict'
+'use strict';
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const {resolve} = require('path')
+const express = require('express');
+const bodyParser = require('body-parser');
+const {resolve} = require('path');
 // const path = require('path') //tried to use this to stop refreshing from causing error
 
-const pkg = require('../package.json')
+const pkg = require('../package.json');
 
-const app = express()
+const app = express();
 
 if (process.env.NODE_ENV !== 'production') {
   // Logging middleware (non-production only)

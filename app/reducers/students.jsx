@@ -10,6 +10,7 @@ const UPDATE_STUDENT = 'UPDATE_STUDENT';
 
 /*--------- ACTION CREATORS --------*/
 
+//adding a newly created student to state
 export function getStudent(student) {
   const action = {
     type: GET_STUDENT,
@@ -49,8 +50,7 @@ export function fetchStudents() {
     return axios.get('/api/students')
       .then(res => res.data)
       .then(students => {
-        const action = getStudents(students);
-        dispatch(action);
+        dispatch(getStudents(students));
       });
   };
 }
@@ -61,15 +61,20 @@ export function postStudent(student, history) {
       .then(res => res.data)
       .then(newStudent => {
         dispatch(getStudent(newStudent));
-        history.push(`/students/${newStudent.id}`);
+        history.push(`/students/${newStudent.id} `);
       });
   };
 }
 
-export function deleteStudent(id) {
+export function deleteStudent(id, history) {
   return function thunk(dispatch) {
     axios.delete(`/api/students/${id}`)
-      .then(() => dispatch(removeStudent(id)));
+      .then(() => {
+        //delete Student is used in single student view and in
+        //specific campus view. each one should redirect to a different page. so this redirect const is used to decided where to redirect
+        const redirect = history && history.push(`/students`);
+        dispatch(removeStudent(id));
+      });
   };
 }
 

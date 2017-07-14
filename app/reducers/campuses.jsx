@@ -61,8 +61,7 @@ export function postCampus(campus, history) {
       .then(res => res.data)
       .then(newCampus => {
         history.push(`/campuses/${newCampus.id}`);
-        const action = getCampus(newCampus);
-        dispatch(action);
+        dispatch(getCampus(newCampus));
       });
   };
 }
@@ -76,7 +75,7 @@ export function deleteCampus(id, history){
 
 export function updateCampus(campus, history){
   return function thunk(dispatch){
-    axios.put(`/api/campuses/${campus.id}`)
+    axios.put(`/api/campuses/${campus.id}`, campus)
       .then(()=> {
         history.push(`/campuses/${campus.id}`);
         dispatch(changeCampus(campus));

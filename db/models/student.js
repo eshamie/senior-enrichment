@@ -2,8 +2,8 @@
 // must be assigned to a campus
 
 'use strict';
-var Sequelize = require('sequelize')
-var db = require('../index.js')
+var Sequelize = require('sequelize');
+var db = require('../index.js');
 
 module.exports = db.define('student', {
   name: {
@@ -13,8 +13,8 @@ module.exports = db.define('student', {
   email: {
     type: Sequelize.STRING,
     allowNull: true,
-    validate:{
+    validate: {
       isEmail: true,
     }
   }
-})
+});
