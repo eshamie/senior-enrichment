@@ -70,13 +70,9 @@ api.post('/students', (req, res, next) => {
 });
 
 api.put('/students/:id', (req, res, next) => {
-	console.log('i am here')
 	const id = Number(req.params.id);
 	Student.update(req.body, {where: { id }})
-		.then(student => {
-			console.log('student object',student)
-			res.json(student)
-		})
+		.then(student => res.json(student))
 		.catch(next);
 });
 

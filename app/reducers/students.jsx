@@ -60,14 +60,14 @@ export function postStudent(student, history) {
     return axios.post('/api/students', student)
       .then(res => res.data)
       .then(newStudent => {
+        console.log('newstudent',newStudent)
+        dispatch(getStudent(newStudent));
         history.push(`/students/${newStudent.id}`);
-        const action = getStudent(newStudent);
-        dispatch(action);
       });
   };
 }
 
-export function deleteStudent(id, history) {
+export function deleteStudent(id) {
   return function thunk(dispatch) {
     axios.delete(`/api/students/${id}`)
       .then(() => dispatch(removeStudent(id)));
@@ -87,13 +87,14 @@ export function updateStudent(student, id, history){
 /*--------- REDUCERS--------*/
 
 export default function studentsReducer (state = [], action) {
+  console.log('im in here')
   switch (action.type) {
     case GET_STUDENTS:
       return action.students;
     case GET_STUDENT:
+      console.log('action.student', action.student)
       return [...state, action.student];
     case REMOVE_STUDENT:
-      console.log(action.id)
       return state.filter(student => student.id !== action.id);
     case UPDATE_STUDENT:
       return state.map(student => {

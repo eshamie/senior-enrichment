@@ -25,7 +25,6 @@ function SingleStudent(props) {
   const studentId = Number(props.match.params.studentId);
   const students = props.students;
   const foundStudent = students.length ? students.find(student => student.id === studentId) : {};
-
   const campuses = props.campuses;
   const campusId = foundStudent.campusId;
   const foundCampus = campuses.length ? campuses.find(campus => campus.id === campusId) : {};

@@ -12,6 +12,7 @@ module.exports = db.define('student', {
   },
   email: {
     type: Sequelize.STRING,
+    allowNull: true,
     validate:{
       isEmail: true,
     }

@@ -5,7 +5,7 @@ import axios from 'axios';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const GET_CAMPUS = 'GET_CAMPUS';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
-const UPDATE_CAMPUS = 'UPDATE_CAMPUS'
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 
 /*---------- ACTION CREATORS ----------*/
 

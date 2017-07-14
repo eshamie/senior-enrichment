@@ -14,7 +14,7 @@ function mapDispatchToProps(dispatch, ownProps){
   return {
     handleUpdate: function(event){
       event.preventDefault();
-      dispatch(updateCampus({ id: Number(ownProps.match.params.campusId), name: event.target.campusName.value }, ownProps.history));
+      dispatch(updateCampus({ id: Number(ownProps.match.params.campusId), name: event.target.campusName.value, image: event.target.image.value }, ownProps.history));
     }
   };
 }
@@ -30,6 +30,12 @@ function UpdateCampusEntry (props) {
         <input
         defaultValue={currentCampus.name}
         name="campusName"
+        className="form-control"
+        type="text"
+        />
+        <input
+        defaultValue={currentCampus.image}
+        name="image"
         className="form-control"
         type="text"
         />

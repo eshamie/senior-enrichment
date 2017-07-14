@@ -14,7 +14,6 @@ function mapDispatchToProps(dispatch, ownProps){
   return {
     handleSubmit: function(event){
       event.preventDefault();
-      console.log(event)
       dispatch(postStudent({name: event.target.studentName.value, email: event.target.email.value, campusId: Number(ownProps.match.params.campusId)}, ownProps.history));
     }
   };

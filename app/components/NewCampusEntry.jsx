@@ -13,7 +13,7 @@ function mapDispatchToProps(dispatch, ownProps){
   return {
     handleSubmit: function(event){
       event.preventDefault();
-      dispatch(postCampus({name: event.target.campusName.value}, ownProps.history));
+      dispatch(postCampus({name: event.target.campusName.value, image: event.target.image.value}, ownProps.history));
     }
   };
 }
@@ -28,6 +28,12 @@ function NewCampusEntry (props) {
         type="text"
         name="campusName"
         placeholder="Enter campus name"
+        />
+        <input
+        className="form-control"
+        type="text"
+        name="image"
+        placeholder="Enter image url"
         />
       </div>
       <div className="form-group">

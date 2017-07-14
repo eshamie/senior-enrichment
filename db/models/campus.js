@@ -9,11 +9,13 @@ module.exports = db.define('campus', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true //this doesn't work, tried having 2 uniqu fields. ansewrs are very vague online
   },
   image: {
     type: Sequelize.STRING,
-    validate:{
-      isUrl: true,
-    }
+    allowNull: true,
+    // validate: {
+    //   isUrl: true,
+    // }
   }
-})
+});

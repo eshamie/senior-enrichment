@@ -30,6 +30,12 @@ function StudentList(props) {
               <NavLink to={`/students/${student.id}`} activeClassName="active">
                 <span>{student.name}</span>
               </NavLink>
+               <NavLink to={`/students/${student.id}/update`}>
+                <button
+                type= 'button'
+                className= "btn btn-info">
+                Update</button>
+              </NavLink>
               <button
               id={student.id}
               type="button"

@@ -39,6 +39,7 @@ function CampusList(props) {
               <NavLink to={`/campuses/${campus.id}`} activeClassName="active"
                activeStyle={{ fontWeight: 'bold', color: 'green'}}>
                 <span>{campus.name}</span>
+                <img src={campus.image}/>
               </NavLink>
               <NavLink to={`/campuses/${campus.id}/update`}>
                 <button
