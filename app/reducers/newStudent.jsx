@@ -1,25 +1,6 @@
 import axios from 'axios';
 
-const WRITE_STUDENT = 'WRITE_STUDENT';
-const WRITE_EMAIL = 'WRITE_EMAIL';
 const WRITE_STUDENT_CAMPUS = 'WRITE_STUDENT_CAMPUS';
-
-
-export function writeStudent (name) {
-  const action = {
-    type: WRITE_STUDENT,
-    name
-  };
-  return action;
-}
-
-export function writeEmail (email) {
-  const action = {
-    type: WRITE_EMAIL,
-    email
-  };
-  return action;
-}
 
 export function writeStudentCampus (campus) {
   const action = {
@@ -29,20 +10,11 @@ export function writeStudentCampus (campus) {
   return action;
 }
 
-export default function newStudentReducer (state = {}, action) {
-  const newObject = Object.assign({}, state);
+export default function newStudentReducer (state = '', action) {
   switch (action.type) {
-    case WRITE_STUDENT:
-      newObject.name = action.name;
-      break;
-    case WRITE_EMAIL:
-      newObject.email = action.email;
-      break;
     case WRITE_STUDENT_CAMPUS:
-      newObject.campus = action.campus;
-      break;
+      return action.campus;
     default:
       return state;
   }
-  return newObject;
 }

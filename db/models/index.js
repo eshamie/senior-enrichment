@@ -16,5 +16,5 @@ Student.belongsTo(Campus);
 module.exports = {
   User,
   Student,
-  Campus,
+  Campus
 };

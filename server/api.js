@@ -10,7 +10,8 @@ const {Student, Campus} = require('../db/models');
 
 api.get('/hello', (req, res) => res.send({hello: 'world'}));
 
-//capus requests
+/* ----------- CAMPUS REQUESTS ---------- */
+
 api.get('/campuses', (req, res, next) => {
 	Campus.findAll()
 		.then(campuses => res.json(campuses))
@@ -33,22 +34,20 @@ api.post('/campuses', (req, res, next) => {
 
 api.put('/campuses/:id', (req, res, next) => {
 	const id = req.params.id;
-
 	Campus.update( req.body, {where: { id }})
 		.then(campus => res.json(campus))
 		.catch(next);
 });
 
 api.delete('/campuses/:id', (req, res, next) => {
-	const campusId = req.params.id;
-
-	Campus.destroy({where: {campusId}})
+	const id = Number(req.params.id);
+	Campus.destroy({where: {id}})
 		.then(() => res.status(204).end())
     .catch(next);
 });
 
+/* ----------- STUDENT REQUESTS ---------- */
 
-//student requests
 api.get('/students', (req, res, next) => {
 	Student.findAll()
 		.then(students => res.json(students))
@@ -64,16 +63,20 @@ api.get('/students/:id', (req, res, next) => {
 });
 
 api.post('/students', (req, res, next) => {
+	console.log(req.body)
 	Student.create(req.body)
 		.then(student => res.json(student))
 		.catch(next);
 });
 
 api.put('/students/:id', (req, res, next) => {
-	const id = req.params.id;
-
+	console.log('i am here')
+	const id = Number(req.params.id);
 	Student.update(req.body, {where: { id }})
-		.then(student => res.json(student))
+		.then(student => {
+			console.log('student object',student)
+			res.json(student)
+		})
 		.catch(next);
 });
 

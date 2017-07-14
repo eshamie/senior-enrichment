@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { writeCampus, postCampus } from '../store';
+import { postCampus } from '../store';
 
 function mapStateToProps(state, ownProps){
   return {
@@ -11,14 +11,9 @@ function mapStateToProps(state, ownProps){
 
 function mapDispatchToProps(dispatch, ownProps){
   return {
-    handleChange: function(event){
-      dispatch(writeCampus(event.target.value));
-    },
     handleSubmit: function(event){
-      console.log(event.target)
       event.preventDefault();
       dispatch(postCampus({name: event.target.campusName.value}, ownProps.history));
-      dispatch(writeCampus(''));
     }
   };
 }
@@ -33,8 +28,6 @@ function NewCampusEntry (props) {
         type="text"
         name="campusName"
         placeholder="Enter campus name"
-        value={props.newCampus}
-        onChange={props.handleChange}
         />
       </div>
       <div className="form-group">

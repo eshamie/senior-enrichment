@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+
+/*--------- ACTIONS --------*/
+
 const GET_STUDENTS = 'GET_STUDENTS';
 const GET_STUDENT = 'GET_STUDENT';
+const REMOVE_STUDENT = 'REMOVE_STUDENT';
+const UPDATE_STUDENT = 'UPDATE_STUDENT';
+
+/*--------- ACTION CREATORS --------*/
 
 export function getStudent(student) {
   const action = {
@@ -19,6 +26,24 @@ export function getStudents(students) {
   return action;
 }
 
+export function removeStudent(id) {
+  const action = {
+    type: REMOVE_STUDENT,
+    id
+  };
+  return action;
+}
+
+export function update(student){
+  const action = {
+    type: UPDATE_STUDENT,
+    student
+  };
+  return action;
+}
+
+/*--------- THUNK CREATORS --------*/
+
 export function fetchStudents() {
   return function thunk(dispatch) {
     return axios.get('/api/students')
@@ -35,12 +60,31 @@ export function postStudent(student, history) {
     return axios.post('/api/students', student)
       .then(res => res.data)
       .then(newStudent => {
+        history.push(`/students/${newStudent.id}`);
         const action = getStudent(newStudent);
         dispatch(action);
-        history.push(`/students/${newStudent.id}`);
       });
   };
 }
+
+export function deleteStudent(id, history) {
+  return function thunk(dispatch) {
+    axios.delete(`/api/students/${id}`)
+      .then(() => dispatch(removeStudent(id)));
+  };
+}
+
+export function updateStudent(student, id, history){
+  return function thunk(dispatch){
+    axios.put(`/api/students/${id}`, student)
+      .then(() => {
+        history.push(`/campuses/${student.campusId}`);
+        dispatch(update(Object.assign(student, {id: Number(id)})));
+      });
+  };
+}
+
+/*--------- REDUCERS--------*/
 
 export default function studentsReducer (state = [], action) {
   switch (action.type) {
@@ -48,6 +92,13 @@ export default function studentsReducer (state = [], action) {
       return action.students;
     case GET_STUDENT:
       return [...state, action.student];
+    case REMOVE_STUDENT:
+      console.log(action.id)
+      return state.filter(student => student.id !== action.id);
+    case UPDATE_STUDENT:
+      return state.map(student => {
+        return student.id === action.student.id ? action.student : student;
+      });
     default:
       return state;
   }

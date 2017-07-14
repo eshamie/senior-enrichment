@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 // import store from '../store';
 import { connect } from 'react-redux';
+import { deleteCampus } from '../store';
 
 const mapStateToProps = function (state) {
   return {
     campuses: state.campuses,
+    students: state.students
+  };
+};
 
+const mapDispatchToProps = function(dispatch, ownProps){
+  return {
+    handleDelete: function(event){
+      event.preventDefault();
+      dispatch(deleteCampus(Number(event.target.id)));
+    }
   };
 };
 
@@ -30,6 +40,18 @@ function CampusList(props) {
                activeStyle={{ fontWeight: 'bold', color: 'green'}}>
                 <span>{campus.name}</span>
               </NavLink>
+              <NavLink to={`/campuses/${campus.id}/update`}>
+                <button
+                type= 'button'
+                className= "btn btn-info">
+                Update</button>
+              </NavLink>
+              <button
+              id={campus.id}
+              type="button"
+              className="btn btn-danger"
+              onClick={props.handleDelete}
+              >Delete</button>
             </li>
           );
         })
@@ -45,5 +67,5 @@ function CampusList(props) {
 }
 
 /** Write your `connect` component below! **/
-const campusListContainer = connect(mapStateToProps)(CampusList);
+const campusListContainer = connect(mapStateToProps, mapDispatchToProps)(CampusList);
 export default withRouter(campusListContainer);
