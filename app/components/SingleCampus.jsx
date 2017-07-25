@@ -96,7 +96,7 @@ function SingleCampus(props) {
           </button>
         </NavLink>
         <button
-          id={foundCampus.id}
+          id={campusId}
           type="button"
           className="btn btn-danger"
           onClick={props.handleCampusDelete}
